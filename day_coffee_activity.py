@@ -7,7 +7,10 @@ time_range = [int((datetime.now() - timedelta(hours=time)).strftime("%H")) for t
 
 
 def get_day_coffee_activity(caffeine_rate: List) -> List:
-
+    """
+    here we're receiving the list objects from database shows how much coffee
+    the user consumed. Here I'm resort the data and reformat it in the more friendly visible way
+    """
     caffeine_info = [0]  # have done so cause list is mutable and couldn't something more efficient
     time_range.reverse()
     for coffee in caffeine_rate:
@@ -25,10 +28,10 @@ def get_day_coffee_activity(caffeine_rate: List) -> List:
             else:
                 caffeine_info[0] = caffeine_info[0] - 10
                 cup_of_coffee = {
-                    'coffee_type': '',
+                    'coffee_type': 'Not consumed',
                     'coffee_machine_id': '',
                     'caffeine_concentration': caffeine_info[0] if caffeine_info[0] > 0 else 0,
-                    'time_of_purchase': ''
+                    'time_of_purchase': f'{hour}:00'
                 }
 
             day_stats.append(cup_of_coffee)
